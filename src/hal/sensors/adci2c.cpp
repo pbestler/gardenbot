@@ -11,7 +11,6 @@
 
 using namespace hal::sensors;
 
-
 ADC1115::ADC1115(uint8_t address, uint8_t signal_offset = 0u):
     _ads(address),
     _signal_offset(signal_offset)

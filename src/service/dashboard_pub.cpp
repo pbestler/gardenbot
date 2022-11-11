@@ -34,11 +34,12 @@ using namespace service;
 using namespace hal::sensors;
 
 /**
-  * @brief Marshalling function to convert read in adc values into soil moisture values.
+  * @brief Marshalling function to convert read in adc values into
+  *        soil moisture values.
   *
   * @return double The moisture level in percentage.
   */
-static int32_t convertVoltageToMoistureLevel(int32_t voltage)
+static int32_t convertVoltToMoistureLevel(int32_t voltage)
 {
     return map(voltage, 14800, 31000, 100, 0);
 }
@@ -52,26 +53,32 @@ DashBoardUpdater::DashBoardUpdater(StopWatch& stopWatch):
  */
 void DashBoardUpdater::run(void)
 {
-    dash.data.NrOfDaylightMinutes = std::chrono::duration_cast<std::chrono::minutes>(_daylightWatch.getElapsedTime()).count();
+    dash.data.NrOfDaylightMinutes =
+        std::chrono::duration_cast<std::chrono::minutes>(
+            _daylightWatch.getElapsedTime()).count();
 }
 
 /**
  * @brief Subscriber interface to retreive the result of a adc measurement.
  *
  * @param result The result of the measurement, including channel id and
- *               already pure adc voltage value..
+ *               already pure adc voltage value.
  */
 void DashBoardUpdater::notify(const adc_result_t& result)
 {
-    std::array<std::pair<int32_t* const, std::function<int32_t(int32_t)>>, 1> CONVERSION_LUT = {
-        std::make_pair(&dash.data.MoistureLevel1, &convertVoltageToMoistureLevel)
+    using conversion_func_cb_t = std::function<int32_t(int32_t)>;
+    using target_address_t = int32_t* const;
+    using lut_entry_t = std::pair<target_address_t, conversion_func_cb_t>;
+
+    std::array<lut_entry_t, 1> CONVERSION_LUT = {
+        std::make_pair(&dash.data.MoistureLevel1, &convertVoltToMoistureLevel)
     };
 
     const auto& [id, value] = result;
     if (id < CONVERSION_LUT.size())
     {
-        auto [targetAddress, conversionFunction] = CONVERSION_LUT[id];
-        *targetAddress = conversionFunction(value);
+        auto [targetAddress, convert] = CONVERSION_LUT[id];
+        *targetAddress = convert(value);
     }
 }
 
@@ -126,7 +133,7 @@ void ConditionController::manageArtificialLight()
     }
 
     if ((dash.data.NrOfDaylightMinutes > 0) &&
-        (dash.data.NrOfDaylightMinutes < configManager.data.minutesOfLightPerDay) &&
+        (dash.data.NrOfDaylightMinutes < configManager.data.minOfLightPerDay) &&
         (dash.data.IsItDay == false) &&
         (dash.data.Socket1 == false))
     {
@@ -134,7 +141,7 @@ void ConditionController::manageArtificialLight()
         digitalWrite(D0, LOW);
 
     } else if ((dash.data.NrOfDaylightMinutes >= 0) &&
-        (dash.data.NrOfDaylightMinutes >= configManager.data.minutesOfLightPerDay) &&
+        (dash.data.NrOfDaylightMinutes >= configManager.data.minOfLightPerDay) &&
         (dash.data.Socket1 == true))
     {
         dash.data.Socket1 = false;

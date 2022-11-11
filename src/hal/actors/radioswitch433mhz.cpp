@@ -48,8 +48,9 @@ void RadioSwitch433Mhz::run()
             std::string timestamp = asctime(localtime(&now));
             timestamp.pop_back();
 
-            file.printf("%s : Switch %i switch from %s => %s.\n", timestamp.c_str(),
-                    i, this->_switchValuesCache[i] == true ? "true": "false",
+            file.printf("%s : Switch %i switch from %s => %s.\n",
+                    timestamp.c_str(), i,
+                    this->_switchValuesCache[i] == true ? "true": "false",
                     this->_valueMap[i].get() == true ? "true": "false");
             file.close();
 

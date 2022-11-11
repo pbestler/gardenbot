@@ -11,7 +11,6 @@
 #include "runnable.h"
 #include "publishing.h"
 
-
 namespace hal::sensors {
 
 typedef int32_t light_sensor_res_t;

@@ -30,6 +30,7 @@ private:
     RCSwitch _radioModule;
     std::array<std::reference_wrapper<bool>, NR_OF_SOCKETS> _valueMap;
     std::bitset<NR_OF_SOCKETS> _switchValuesCache;
+
 public:
     void run() override;
     RadioSwitch433Mhz();

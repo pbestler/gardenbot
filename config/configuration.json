@@ -8,7 +8,7 @@
         "hidden": true
     },
     {
-        "name": "minutesOfLightPerDay",
+        "name": "minOfLightPerDay",
         "label": "Daylight Hours.",
         "type": "uint16_t",
         "min": 0,

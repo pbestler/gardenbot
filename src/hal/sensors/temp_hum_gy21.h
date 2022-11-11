@@ -19,7 +19,6 @@ namespace hal::sensors {
 typedef enum { humidity = 0, temperature = 1} temp_hum_res_desc_t;
 typedef std::pair<float, float> temp_hum_res_t;
 
-
 class TempHumSensor:
     public Runnable,
     public Publisher<temp_hum_res_t>
@@ -30,4 +29,5 @@ class TempHumSensor:
 };
 
 }
+
 #endif /* _SRC_HAL_SENSORS_TEMP_HUM_GY21 */

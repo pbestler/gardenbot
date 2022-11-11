@@ -58,13 +58,14 @@ void setup()
 
 void loop()
 {
-    //software interrupts
+    // Software tasks.
     WiFiManager.loop();
     updater.loop();
     dash.loop();
     configManager.loop();
     Gardener.loop();
 
+    // Status LED control.
     unsigned long curr_time = millis();
     if (curr_time - last_time >= 500)
     {

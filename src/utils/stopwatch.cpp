@@ -10,6 +10,7 @@
  * @copyright Copyright (c) 2022 by Peter Bestler
  */
 #include "stopwatch.h"
+
 #include <chrono>
 
 /**
@@ -49,12 +50,14 @@ const std::chrono::seconds StopWatch::stop()
 {
     if (this->_startTime == std::chrono::steady_clock::time_point::min())
     {
-        return std::chrono::seconds(0);
+        return std::chrono::seconds::zero();
     }
 
     auto endTime = std::chrono::steady_clock::now();
 
-    this->_elapsedTime += std::chrono::duration_cast<std::chrono::seconds>(endTime - this->_startTime);
+    this->_elapsedTime +=
+        std::chrono::duration_cast<std::chrono::seconds>(
+            endTime - this->_startTime);
     this->_startTime = std::chrono::steady_clock::time_point::min();
 
     return this->_elapsedTime;
@@ -82,7 +85,8 @@ void StopWatch::reset()
     if (this->_startTime != std::chrono::steady_clock::time_point::min())
     {
         auto currentTime = std::chrono::steady_clock::now();
-        auto current_elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - this->_startTime);
+        auto current_elapsed = std::chrono::duration_cast<std::chrono::seconds>(
+            currentTime - this->_startTime);
         return (this->_elapsedTime + current_elapsed);
     }
 
