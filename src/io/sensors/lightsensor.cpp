@@ -69,7 +69,7 @@ void LightSensor::loop()
         time_t now = time(nullptr);
         std::string timestamp = asctime(localtime(&now));
         timestamp.pop_back();
-        file.printf("%s : Daylight detected\n", timestamp.c_str());
+        file.printf("%s : Daylight detected (%i lux)\n", timestamp.c_str(), dash.data.DaylightSensor);
         dash.data.IsItDay = true;
     }
 
@@ -81,7 +81,7 @@ void LightSensor::loop()
         time_t now = time(nullptr);
         std::string timestamp = asctime(localtime(&now));
         timestamp.pop_back();
-        file.printf("%s : Night detected\n", timestamp.c_str());
+        file.printf("%s : Night detected (%i lux) \n", timestamp.c_str(), dash.data.DaylightSensor);
         dash.data.IsItDay = false;
     }
 
