@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Socket1",
+        "label": "Light",
+        "type": "bool",
+        "direction": "control"
+    },
+    {
+        "name": "Socket2",
+        "label": "Pumpe",
+        "type": "bool",
+        "direction": "control"
+    },
+    {
+        "name": "DaylightSensor",
+        "label": "Daylight sensor",
+        "type": "float",
+        "direction": "display",
+        "display": "graph",
+        "xaxis": 100
+    },
+    {
+        "name": "NrOfDaylightMinutes",
+        "label": "Duration of natural daylight",
+        "type": "int32_t",
+        "direction": "display"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "name": "projectName",
+        "label": "Device Name",
+        "type": "char",
+        "length": 32,
+        "value": "GardenBot",
+        "hidden": true
+    },
+    {
+        "name": "minutesOfLightPerDay",
+        "label": "Daylight Hours.",
+        "type": "uint16_t",
+        "min": 0,
+        "max": 1440,
+        "step": 30,
+        "control": "slider",
+        "value": 1000
+    },
+    {
+        "name": "daylightsensorThreshold",
+        "label": "Light Sensor threshold (lux).",
+        "type": "uint32_t",
+        "min": 0,
+        "max": 100000,
+        "step": 100,
+        "control": "slider",
+        "value": 5000
+    }
+]
