@@ -19,7 +19,7 @@ class Runnable
 };
 
 class RunnableContainer:
-        public Runnable
+    public Runnable
 {
     public:
         void run(void) override;

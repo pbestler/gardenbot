@@ -58,7 +58,7 @@ void DashBoardUpdater::run(void)
  * @brief Subscriber interface to retreive the result of a adc measurement.
  *
  * @param result The result of the measurement, including channel id and
- *               already marshalled value..
+ *               already pure adc voltage value..
  */
 void DashBoardUpdater::notify(const adc_result_t& result)
 {
@@ -102,9 +102,8 @@ void DashBoardUpdater::notify(const light_sensor_res_t& result)
 
 void DashBoardUpdater::notify(const hal::sensors::temp_hum_res_t& result)
 {
-    // We just forward it to the dashboard.
-    dash.data.airTemp = std::get<hal::sensors::temp_hum_res_desc_t::temperature>(result);
-    dash.data.airHum = std::get<hal::sensors::temp_hum_res_desc_t::humidity>(result);
+    // We just forward it to the dashboard so unpack the tuple.
+    std::tie(dash.data.airHum, dash.data.airTemp) = result;
 }
 
 void ConditionController::run()

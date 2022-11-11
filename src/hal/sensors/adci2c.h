@@ -33,7 +33,6 @@ class ADC1115:
     private:
         ADS1115 _ads;
         uint8_t _signal_offset;
-
 };
 
 }
