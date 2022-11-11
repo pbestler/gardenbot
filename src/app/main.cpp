@@ -1,16 +1,17 @@
 #include <Arduino.h>
 
-#include "LittleFS.h"
-
-#include "WiFiManager.h"
-#include "webServer.h"
-#include "updater.h"
-#include "fetch.h"
-#include "configManager.h"
-#include "timeSync.h"
-#include "dashboard.h"
 #include "gardenmanager.h"
-#include "TZ.h"
+
+#include <webServer.h>
+#include <updater.h>
+#include <fetch.h>
+#include <timeSync.h>
+#include <dashboard.h>
+#include <configManager.h>
+
+#include <LittleFS.h>
+#include <WiFiManager.h>
+#include <TZ.h>
 
 #define BUILTIN_LED 2
 

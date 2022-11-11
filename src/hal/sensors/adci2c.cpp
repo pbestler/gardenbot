@@ -6,8 +6,8 @@
  * @copyright(c) 2022 Peter Bestler
  */
 #include "adci2c.h"
-#include <Wire.h>
 
+#include <Wire.h>
 
 using namespace hal::sensors;
 

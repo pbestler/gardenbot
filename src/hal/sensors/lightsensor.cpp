@@ -6,14 +6,14 @@
  * @copyright Copyright(c) 2022 Peter Bestler
  */
 #include "lightsensor.h"
-#include "dashboard.h"
-#include "configManager.h"
-#include <AS_BH1750.h>
 #include "stopwatch.h"
-#include "LittleFS.h"
-#include <string>
 
-#define LOGGING_EN 0
+#include <configManager.h>
+#include <dashboard.h>
+
+#include <AS_BH1750.h>
+#include <LittleFS.h>
+#include <string>
 
 using namespace hal::sensors;
 

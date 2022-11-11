@@ -6,10 +6,12 @@
  * @copyright Copyright(c) 2022 Peter Bestler
  */
 #include "gardenmanager.h"
-#include "MyAlarm.h"
-#include "LittleFS.h"
 #include "dashboard_pub.h"
-#include "configManager.h"
+
+#include <configManager.h>
+
+#include <MyAlarm.h>
+#include <LittleFS.h>
 #include <ctime>
 
 using namespace app;

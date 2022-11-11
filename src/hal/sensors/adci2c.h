@@ -9,12 +9,14 @@
 #define _SRC_HAL_SENSORS_ADCI2C
 
 #include "publishing.h"
-#include <functional>
 #include "runnable.h"
+
+#include "ADS1X15.h"
+
+#include <functional>
 #include <map>
 #include <tuple>
 #include <stdint.h>
-#include "ADS1X15.h"
 
 namespace hal::sensors {
 

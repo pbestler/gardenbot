@@ -6,8 +6,9 @@
  * @copyright Copyright(c) 2022 Peter Bestler
  */
 #include "radioswitch433mhz.h"
-#include "dashboard.h"
-#include "LittleFS.h"
+
+#include <dashboard.h>
+#include <LittleFS.h>
 
 using namespace hal::actors;
 

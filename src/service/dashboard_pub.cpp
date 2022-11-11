@@ -24,10 +24,11 @@
 #include "dashboard.h"
 #include "configManager.h"
 
-#include <stdint.h>
 #include <array>
 #include <tuple>
 #include <functional>
+
+#include <stdint.h>
 
 using namespace service;
 using namespace hal::sensors;

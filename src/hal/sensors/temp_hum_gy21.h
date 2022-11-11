@@ -8,8 +8,8 @@
 #ifndef _SRC_HAL_SENSORS_TEMP_HUM_GY21
 #define _SRC_HAL_SENSORS_TEMP_HUM_GY21
 
-#include <runnable.h>
-#include <publishing.h>
+#include "runnable.h"
+#include "publishing.h"
 
 #include <float.h>
 #include <tuple>
