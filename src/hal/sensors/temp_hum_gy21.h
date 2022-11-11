@@ -11,12 +11,13 @@
 #include <runnable.h>
 #include <publishing.h>
 
+#include <float.h>
 #include <tuple>
 
 namespace hal::sensors {
 
 typedef enum { humidity = 0, temperature = 1} temp_hum_res_desc_t;
-typedef std::pair<double, double> temp_hum_res_t;
+typedef std::pair<float, float> temp_hum_res_t;
 
 
 class TempHumSensor:
@@ -24,6 +25,7 @@ class TempHumSensor:
     public Publisher<temp_hum_res_t>
 {
     public:
+        TempHumSensor(void);
         void run(void) override;
 };
 

@@ -7,10 +7,26 @@
  */
 #include "temp_hum_gy21.h"
 
+#include <SHT2x.h>
+
 using namespace hal::sensors;
 
+SHT21 sht;
 
-void TempHumSensor::run()
+TempHumSensor::TempHumSensor(void)
 {
+    sht.begin();
+}
 
+void TempHumSensor::run(void)
+{
+    if (sht.isConnected())
+    {
+        sht.read();
+
+        float temperature = sht.getTemperature();
+        float humidity = sht.getHumidity();
+
+        publish(std::make_pair(humidity, temperature));
+    }
 }

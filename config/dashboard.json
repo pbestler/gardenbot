@@ -31,9 +31,21 @@
         "direction": "display"
     },
     {
+        "name": "airTemp",
+        "label": "Temerature in celsius",
+        "type": "float",
+        "direction": "display"
+    },
+    {
+        "name": "airHum",
+        "label": "Air Humidity in (%)",
+        "type": "float",
+        "direction": "display"
+    },
+    {
         "name": "MoistureLevel1",
         "label": "Moisture sensor 1 (%)",
-        "type": "int32_t",
+        "type": "float",
         "direction": "display"
     },
     {

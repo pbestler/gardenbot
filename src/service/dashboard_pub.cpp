@@ -80,7 +80,9 @@ void DashBoardUpdater::notify(const light_sensor_res_t& result)
 
 void DashBoardUpdater::notify(const hal::sensors::temp_hum_res_t& result)
 {
-
+    // We just forward it to the dashboard.
+    dash.data.airTemp = std::get<hal::sensors::temp_hum_res_desc_t::temperature>(result);
+    dash.data.airHum = std::get<hal::sensors::temp_hum_res_desc_t::humidity>(result);
 }
 
 void ConditionController::run()
