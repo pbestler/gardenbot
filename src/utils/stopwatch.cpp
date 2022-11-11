@@ -18,7 +18,8 @@
  * @brief Construct a new Stop Watch:: Stop Watch object
  */
 StopWatch::StopWatch():
-    _startTime(std::chrono::steady_clock::time_point::min())
+    _startTime(std::chrono::steady_clock::time_point::min()),
+    _elapsedTime(std::chrono::seconds::zero())
 {}
 
 /**
@@ -69,7 +70,7 @@ const std::chrono::seconds StopWatch::stop()
 void StopWatch::reset()
 {
     this->_startTime = std::chrono::steady_clock::time_point::min();
-    this->_elapsedTime = std::chrono::seconds::min();
+    this->_elapsedTime = std::chrono::seconds::zero();
 }
 
  /* Getter for the elapsed Time
