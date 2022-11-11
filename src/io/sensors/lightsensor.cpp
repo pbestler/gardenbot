@@ -1,15 +1,24 @@
+
+/**
+ * @file lightsensor.cpp
+ * @author Peter Bestler
+ * @brief Implementation of light sensor logic.
+ *
+ * @date 2022-05-25
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 #include "lightsensor.h"
 #include "dashboard.h"
 #include "configManager.h"
 #include <AS_BH1750.h>
+#include "stopwatch.h"
 
 AS_BH1750 sensor;
 
-LightSensor LichtSensor;
-
-LightSensor::LightSensor():
-    start_of_day(-1),
-    end_of_day(-1)
+LightSensor::LightSensor(StopWatch& daylightWatch):
+    _daylightWatch(daylightWatch)
 {
 
 }
@@ -19,9 +28,9 @@ LightSensor::~LightSensor()
 
 }
 
-int32_t LightSensor::getDayDuration()
+std::chrono::seconds LightSensor::getDayDuration()
 {
-    return (this->end_of_day - this->start_of_day);
+    return this->_daylightWatch.getElapsedTime();
 }
 
 void LightSensor::begin()
@@ -37,31 +46,16 @@ void LightSensor::loop()
 {
     dash.data.DaylightSensor = sensor.readLightLevel();
 
-    if ((dash.data.DaylightSensor >= configManager.data.daylightsensorThreshold) &&
-       (this->start_of_day == -1))
+    if (dash.data.DaylightSensor >= configManager.data.daylightsensorThreshold)
     {
-        time_t now = time(nullptr);
-        this->start_of_day = (now / 60) % 1440;
-        Serial.println("Start of day is:");
-        Serial.println(this->start_of_day);
-    } 
-     
-    if ((dash.data.DaylightSensor < configManager.data.daylightsensorThreshold) &&
-        (this->start_of_day != -1) && 
-        (this->end_of_day == -1))
-    {
-        time_t now = time(nullptr);
-        this->end_of_day = (now / 60) % 1440;
-        
-        Serial.println("End of day is:");
-        Serial.println(this->end_of_day);
-        
+        this->_daylightWatch.start();
+        dash.data.IsItDay = true;
     }
 
-    // TODO reset on day change.
-
-    dash.data.NrOfDaylightMinutes = this->end_of_day - this->start_of_day;
-
-    
+    if (dash.data.DaylightSensor < configManager.data.daylightsensorThreshold)
+    {
+        this->_daylightWatch.stop();
+        dash.data.IsItDay = false;
+    }
 }
 

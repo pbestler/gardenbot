@@ -20,6 +20,12 @@
         "xaxis": 100
     },
     {
+        "name": "IsItDay",
+        "label": "Currently daylight",
+        "type": "bool",
+        "direction": "display"
+    },
+    {
         "name": "NrOfDaylightMinutes",
         "label": "Duration of natural daylight",
         "type": "int32_t",

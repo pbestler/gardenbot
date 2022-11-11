@@ -1,19 +1,32 @@
-#include "dashboard.h"
-#include <stdint.h>
+/**
+ * @file lightsensor.h
+ * @brief Declaration of light sensor.
+ *
+ * @date 2022-05-25
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+#ifndef _LIGHTSENSOR_H_
+#define _LIGHTSENSOR_H_
 
-#pragma once
+#include <chrono>
+
+class StopWatch;
 
 class LightSensor
 {
 private:
-    int32_t start_of_day;
-    int32_t end_of_day;
+    StopWatch& _daylightWatch;
 public:
-    LightSensor();
+    LightSensor() = delete;
+    LightSensor(const LightSensor&) = delete;
+    LightSensor(StopWatch& daylightWatch);
     ~LightSensor();
-    int32_t getDayDuration();
+
+    std::chrono::seconds getDayDuration();
     void begin();
     void loop();
 };
 
-extern LightSensor LichtSensor;
+#endif // _LIGHTSENSOR_H_

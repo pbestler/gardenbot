@@ -31,20 +31,6 @@ void setup()
     //Set the timezone to Berlin
     timeSync.begin(TZ_Europe_Berlin);
 
-    //Wait for connection
-    timeSync.waitForSyncResult(10000);
-    
-    if (timeSync.isSynced())
-    {
-        time_t now = time(nullptr);
-        Serial.print(PSTR("Current time in Berlin: "));
-        Serial.print(asctime(localtime(&now)));
-        
-    }
-    else 
-    {
-        Serial.println("Timeout while receiving the time");
-    }
 
     // Set LED to on.
     pinMode(BUILTIN_LED, OUTPUT); 
