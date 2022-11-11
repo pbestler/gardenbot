@@ -1,4 +1,7 @@
 #include "gardenmanager.h"
+#include "MyAlarm.h"
+#include "LittleFS.h"
+#include "dashboard.h"
 
 GardenManager Gardener;
 
@@ -10,17 +13,20 @@ GardenManager::GardenManager():
 
 void GardenManager::begin()
 {
+    timerAlarm.startService();
+    timerAlarm.createDay(0, 0, 1, [&] () { _daylightWatch.reset(); });
+    timerAlarm.createDay(23, 50, 0, [&] () { _lightSensor.logDaylight();});
+
     // Evaluate io.
-    this->_lightSensor.begin();
-    this->_switches.begin();
+    _lightSensor.begin();
+    _switches.begin();
 }
 
 void GardenManager::loop()
 {
     // Evaluate io.
-    this->_lightSensor.loop();
-    this->_switches.loop();
+    _lightSensor.loop();
+    _switches.loop();
 
-    // Do the daylight logic.
-
+    timerAlarm.update();
 }

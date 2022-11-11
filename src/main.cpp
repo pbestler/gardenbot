@@ -21,18 +21,9 @@ void setup()
 {
     Serial.begin(115200);
 
-    // Initialize with log level and log output.
-
-    LittleFS.begin();
-    GUI.begin();
-    configManager.begin();
-    WiFiManager.begin(configManager.data.projectName, 60000UL);
-    dash.begin(1000);
-    //Gardener.begin();
-
+    // First of all we enable wifi and get the current time.
+    WiFiManager.begin(configManager.data.projectName, 10000UL);
     timeSync.begin(TZ_Europe_Berlin);
-
-    //Wait for connection
     timeSync.waitForSyncResult(5000);
 
     if (timeSync.isSynced())
@@ -40,7 +31,6 @@ void setup()
         time_t now = time(nullptr);
         Serial.print(PSTR("Current time in Berlin: "));
         Serial.print(asctime(localtime(&now)));
-
     }
     else
     {
@@ -49,11 +39,18 @@ void setup()
 
     }
 
+    // Now we tearup our application.
+    LittleFS.begin();
+    GUI.begin();
+    configManager.begin();
+    dash.begin(1000);
+    Gardener.begin();
+
     // Set LED to on.
     pinMode(BUILTIN_LED, OUTPUT);
     digitalWrite(BUILTIN_LED, LOW);
     last_time = millis();
-    Serial.println("test");
+    Serial.println("Initialization finished.");
 }
 
 
@@ -63,7 +60,8 @@ void loop()
     WiFiManager.loop();
     updater.loop();
     dash.loop();
-    //Gardener.loop();
+    configManager.loop();
+    Gardener.loop();
 
     unsigned long curr_time = millis();
     if (curr_time - last_time >= 500)
