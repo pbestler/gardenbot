@@ -25,6 +25,7 @@ public:
     ~LightSensor();
 
     std::chrono::seconds getDayDuration();
+    void logDaylight();
     void begin();
     void loop();
 };
