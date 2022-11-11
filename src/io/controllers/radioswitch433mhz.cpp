@@ -38,8 +38,6 @@ void RadioSwitch433Mhz::loop()
         if (this->_valueMap[i].get() != this->_switchValuesCache[i])
         {
 
-
-
             auto file = LittleFS.open("daylight.log", "a+");
             time_t now = time(nullptr);
             std::string timestamp = asctime(localtime(&now));

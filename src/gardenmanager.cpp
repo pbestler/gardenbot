@@ -3,6 +3,7 @@
 #include "LittleFS.h"
 #include "dashboard.h"
 #include "configManager.h"
+#include <ctime>
 
 GardenManager Gardener;
 
@@ -12,9 +13,17 @@ GardenManager::GardenManager():
     _switches()
 {}
 
-
 void GardenManager::runLightEvaluationLoop()
 {
+    time_t curr_time = time(NULL);
+    tm *tmLocal = localtime(&curr_time);
+
+    /* We just should switch artificial light after 19 o clock.*/
+    if (tmLocal->tm_hour <= 19)
+    {
+        return;
+    }
+
     if ((dash.data.NrOfDaylightMinutes > 0) &&
         (dash.data.NrOfDaylightMinutes < configManager.data.minutesOfLightPerDay) &&
         (dash.data.IsItDay == false) &&
@@ -22,7 +31,8 @@ void GardenManager::runLightEvaluationLoop()
     {
         dash.data.Socket2 = true;
     } else if ((dash.data.NrOfDaylightMinutes >= 0) &&
-        (dash.data.NrOfDaylightMinutes >= configManager.data.minutesOfLightPerDay))
+        (dash.data.NrOfDaylightMinutes >= configManager.data.minutesOfLightPerDay) &&
+        (dash.data.Socket2 == true))
     {
         dash.data.Socket2 = false;
     }
