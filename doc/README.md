@@ -6,7 +6,7 @@ herbs on the window sill or balcony.
 The smart combination of sensors and actors with a configurable ruleset should not replace the natural environment. It should just support
 it. For example some artificial light should be just added if the natural daylight becomes to short, or if rain isn't sufficient water should be added.
 
-Furthermore this project should support my plants if I am on a longer holidays.
+Furthermore this project should support my plants if I am on longer holidays.
 
 ### System Architecture
 
@@ -20,6 +20,9 @@ be attached. Furthermore an ADS1115 ADC is attached to the I2C, and the 4 ADC-Ch
 As actors currently just 433 MHz sockets are supported where. Later on a relayboard could be added to support actors with 12 Volt.
 
 #### 3) Configuration
+
+The configuration of the project by the user should be done via web interface. This is already integrated with the ESP8266 IoT Framework.
+Currently the attached sensors are hard coded but this can be in future configurable aswell.
 
 ### Software Architecture
 
