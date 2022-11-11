@@ -46,9 +46,9 @@ void setup()
     dash.begin(1000);
     Gardener.begin();
 
-    // Set LED to on.
+    // Set LED to off.
     pinMode(BUILTIN_LED, OUTPUT);
-    digitalWrite(BUILTIN_LED, LOW);
+    digitalWrite(BUILTIN_LED, HIGH);
     last_time = millis();
     Serial.println("Initialization finished.");
 }
@@ -66,8 +66,14 @@ void loop()
     unsigned long curr_time = millis();
     if (curr_time - last_time >= 500)
     {
-        last_time = curr_time;
-        pin_state = pin_state == 0 ? 1 : 0;
-        digitalWrite(BUILTIN_LED, pin_state);
+        if (configManager.data.aliveLED == true) {
+            last_time = curr_time;
+            pin_state = pin_state == 0 ? 1 : 0;
+            digitalWrite(BUILTIN_LED, pin_state);
+        }
+        else
+        {
+            digitalWrite(BUILTIN_LED, HIGH);
+        }
     }
 }

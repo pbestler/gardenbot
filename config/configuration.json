@@ -26,5 +26,11 @@
         "step": 50,
         "control": "slider",
         "value": 150
+    },
+    {
+        "name": "aliveLED",
+        "label": "Toggle Status LED",
+        "type": "bool",
+        "value": "false"
     }
 ]
