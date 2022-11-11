@@ -86,12 +86,6 @@ namespace service
             void manageDoor(void);
     };
 
-    /**
-     * @brief Marshalling function to convert read in adc values into soil moisture values.
-     *
-     * @return double The moisture level in percentage.
-     */
-    int32_t convertVoltageToMoistureLevel(int32_t voltage);
 };
 
 

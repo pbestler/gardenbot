@@ -25,9 +25,22 @@
 #include "configManager.h"
 
 #include <stdint.h>
+#include <array>
+#include <tuple>
+#include <functional>
 
 using namespace service;
 using namespace hal::sensors;
+
+/**
+  * @brief Marshalling function to convert read in adc values into soil moisture values.
+  *
+  * @return double The moisture level in percentage.
+  */
+static int32_t convertVoltageToMoistureLevel(int32_t voltage)
+{
+    return map(voltage, 14800, 31000, 100, 0);
+}
 
 DashBoardUpdater::DashBoardUpdater(StopWatch& stopWatch):
     _daylightWatch(stopWatch)
@@ -49,15 +62,15 @@ void DashBoardUpdater::run(void)
  */
 void DashBoardUpdater::notify(const adc_result_t& result)
 {
-    std::array<int32_t* const, 1> LUT_FLOAT = {
-        &dash.data.MoistureLevel1
+    std::array<std::pair<int32_t* const, std::function<int32_t(int32_t)>>, 1> CONVERSION_LUT = {
+        std::make_pair(&dash.data.MoistureLevel1, &convertVoltageToMoistureLevel)
     };
 
-    const auto id = std::get<adc_result_desc_t::ID>(result);
-    const auto value = std::get<adc_result_desc_t::VALUE>(result);
-    if (id < LUT_FLOAT.size())
+    const auto& [id, value] = result;
+    if (id < CONVERSION_LUT.size())
     {
-        *LUT_FLOAT[id] = convertVoltageToMoistureLevel(value);
+        auto [targetAddress, conversionFunction] = CONVERSION_LUT[id];
+        *targetAddress = conversionFunction(value);
     }
 }
 
@@ -137,9 +150,4 @@ void ConditionController::manageWaterPump()
 void ConditionController::manageDoor()
 {
     // TODO PBE: Implement me.
-}
-
-int32_t service::convertVoltageToMoistureLevel(int32_t voltage)
-{
-    return map(voltage, 14800, 31000, 100, 0);
 }

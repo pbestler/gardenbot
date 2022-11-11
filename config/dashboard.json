@@ -44,7 +44,7 @@
     },
     {
         "name": "MoistureLevel1",
-        "label": "Moisture sensor 1 (%)",
+        "label": "Moisture sensor (%)",
         "type": "int32_t",
         "direction": "display"
     }
