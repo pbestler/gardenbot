@@ -30,11 +30,14 @@ void GardenManager::runLightEvaluationLoop()
         (dash.data.Socket2 == false))
     {
         dash.data.Socket2 = true;
+        digitalWrite(D0, LOW);
+
     } else if ((dash.data.NrOfDaylightMinutes >= 0) &&
         (dash.data.NrOfDaylightMinutes >= configManager.data.minutesOfLightPerDay) &&
         (dash.data.Socket2 == true))
     {
         dash.data.Socket2 = false;
+        digitalWrite(D0, HIGH);
     }
 
 
@@ -47,6 +50,9 @@ void GardenManager::begin()
     timerAlarm.createDay(23, 50, 0, [&] () { _lightSensor.logDaylight();});
 
     // Evaluate io.
+    pinMode(D0, OUTPUT);
+    digitalWrite(D0, HIGH);
+
     _lightSensor.begin();
     _switches.begin();
 }
