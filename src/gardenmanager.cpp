@@ -11,14 +11,17 @@ GardenManager::GardenManager():
     _daylightWatch(),
     _lightSensor(_daylightWatch),
     _switches()
-{}
+{
+
+
+}
 
 void GardenManager::runLightEvaluationLoop()
 {
     time_t curr_time = time(NULL);
     tm *tmLocal = localtime(&curr_time);
 
-    /* We just should switch artificial light after 19 o clock.*/
+    /* We just should switch artificial light after 20:00 o clock.*/
     if (tmLocal->tm_hour <= 19)
     {
         return;
@@ -27,16 +30,16 @@ void GardenManager::runLightEvaluationLoop()
     if ((dash.data.NrOfDaylightMinutes > 0) &&
         (dash.data.NrOfDaylightMinutes < configManager.data.minutesOfLightPerDay) &&
         (dash.data.IsItDay == false) &&
-        (dash.data.Socket2 == false))
+        (dash.data.Socket1 == false))
     {
-        dash.data.Socket2 = true;
+        dash.data.Socket1 = true;
         digitalWrite(D0, LOW);
 
     } else if ((dash.data.NrOfDaylightMinutes >= 0) &&
         (dash.data.NrOfDaylightMinutes >= configManager.data.minutesOfLightPerDay) &&
-        (dash.data.Socket2 == true))
+        (dash.data.Socket1 == true))
     {
-        dash.data.Socket2 = false;
+        dash.data.Socket1 = false;
         digitalWrite(D0, HIGH);
     }
 
