@@ -18,8 +18,9 @@
 
 namespace hal::sensors {
 
+typedef enum { ID = 0, VALUE = 1} adc_result_desc_t;
 /** Declaration of the top which is emitted from ADC. */
-typedef std::pair<uint8_t,double> adc_result_t;
+typedef std::pair<uint8_t,int32_t> adc_result_t;
 
 class ADC1115:
     public Runnable,

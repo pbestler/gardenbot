@@ -91,7 +91,7 @@ namespace service
      *
      * @return double The moisture level in percentage.
      */
-    double convertVoltageToMoistureLevel(double voltage);
+    int32_t convertVoltageToMoistureLevel(int32_t voltage);
 };
 
 
