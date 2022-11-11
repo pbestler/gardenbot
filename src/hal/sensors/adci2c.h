@@ -14,6 +14,7 @@
 #include <map>
 #include <tuple>
 #include <stdint.h>
+#include "ADS1X15.h"
 
 namespace hal::sensors {
 
@@ -25,8 +26,13 @@ class ADC1115:
     public Publisher<adc_result_t>
 {
     public:
-        ADC1115();
+        explicit ADC1115(uint8_t address, uint8_t signal_offset);
         void run() override;
+
+    private:
+        ADS1115 _ads;
+        uint8_t _signal_offset;
+
 };
 
 }

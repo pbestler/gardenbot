@@ -16,7 +16,7 @@ using namespace app;
 
 GardenManager::GardenManager():
     _lightSensor(),
-    _adc(),
+    _adc(0x48, 0),
     _daylightWatch(),
     _dashboardUpdater(_daylightWatch),
     _environmentController(),
