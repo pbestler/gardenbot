@@ -13,7 +13,9 @@ private:
     StopWatch _daylightWatch;
     LightSensor _lightSensor;
     RadioSwitch433Mhz _switches;
-    
+
+    void runLightEvaluationLoop();
+
 public:
     GardenManager();
     void begin();

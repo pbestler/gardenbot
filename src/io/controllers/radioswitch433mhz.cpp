@@ -1,5 +1,6 @@
 #include "radioswitch433mhz.h"
 #include "dashboard.h"
+#include "LittleFS.h"
 
 enum
 {
@@ -37,10 +38,17 @@ void RadioSwitch433Mhz::loop()
         if (this->_valueMap[i].get() != this->_switchValuesCache[i])
         {
 
-            Serial.printf("Socket %i switch from %s => %s \n",
-                    i,
-                    this->_switchValuesCache[i] == true ? "true": "false",
+
+
+            auto file = LittleFS.open("daylight.log", "a+");
+            time_t now = time(nullptr);
+            std::string timestamp = asctime(localtime(&now));
+            timestamp.pop_back();
+
+            file.printf("%s : Switch %i switch from %s => %s.\n", timestamp.c_str(),
+                    i, this->_switchValuesCache[i] == true ? "true": "false",
                     this->_valueMap[i].get() == true ? "true": "false");
+            file.close();
 
             //Send the appropriate signal from the lut.
             auto state_index = this->_valueMap[i].get() == true ? ON : OFF;

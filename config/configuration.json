@@ -13,9 +13,9 @@
         "type": "uint16_t",
         "min": 0,
         "max": 1440,
-        "step": 30,
+        "step": 1,
         "control": "slider",
-        "value": 1000
+        "value": 360
     },
     {
         "name": "daylightsensorThreshold",

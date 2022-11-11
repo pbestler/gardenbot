@@ -61,15 +61,27 @@ void LightSensor::loop()
 {
     dash.data.DaylightSensor = sensor.readLightLevel();
 
-    if (dash.data.DaylightSensor >= configManager.data.daylightsensorThreshold)
+    if ((dash.data.DaylightSensor >= configManager.data.daylightsensorThreshold) &&
+        (dash.data.IsItDay == false))
     {
         this->_daylightWatch.start();
+        auto file = LittleFS.open("daylight.log", "a+");
+        time_t now = time(nullptr);
+        std::string timestamp = asctime(localtime(&now));
+        timestamp.pop_back();
+        file.printf("%s : Daylight detected\n", timestamp.c_str());
         dash.data.IsItDay = true;
     }
 
-    if (dash.data.DaylightSensor < configManager.data.daylightsensorThreshold)
+    if ((dash.data.DaylightSensor < configManager.data.daylightsensorThreshold) &&
+        (dash.data.IsItDay == true))
     {
         this->_daylightWatch.stop();
+        auto file = LittleFS.open("daylight.log", "a+");
+        time_t now = time(nullptr);
+        std::string timestamp = asctime(localtime(&now));
+        timestamp.pop_back();
+        file.printf("%s : Night detected\n", timestamp.c_str());
         dash.data.IsItDay = false;
     }
 
