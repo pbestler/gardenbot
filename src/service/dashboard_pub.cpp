@@ -1,4 +1,25 @@
-
+/**
+ * @file  dashboard_pub.cpp
+ *
+ * @brief Implements bussiness logic of our smartgarden, the
+ *        dashboard is updated according to the reported values.
+ *
+ *        In a second step the condition controller checks if there
+ *        is an action required.
+ *
+ *        TODO PBE: If it comes more complex we can split up this file
+ *        into multiple and add other services (e.g sending mails, telegram,
+ *        pushing to an mqtt broker and so on.)
+ *
+ *        Fruthermore the dashboard updater is the perfect spot to inject
+ *        aspects of signal processing like:
+ *           - debouncing of signals
+ *           - hysteresis
+ *           - convert signals
+ *           - marshal signals.
+ *
+ * @copyright Copyright(c) 2022 Peter Bestler
+ */
 #include "dashboard_pub.h"
 #include "dashboard.h"
 #include "configManager.h"

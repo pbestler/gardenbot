@@ -1,13 +1,9 @@
-
 /**
- * @file lightsensor.cpp
- * @author Peter Bestler
- * @brief Implementation of light sensor logic.
+ * @file  lightsensor.cpp
  *
- * @date 2022-05-25
+ * @brief  Definition of the LightSensor.
  *
- * @copyright Copyright (c) 2022
- *
+ * @copyright Copyright(c) 2022 Peter Bestler
  */
 #include "lightsensor.h"
 #include "dashboard.h"

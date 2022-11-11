@@ -1,3 +1,10 @@
+/**
+ * @file  radioswitch433mhz.h
+ *
+ * @brief Declaration of the RadioSwitch433Mhz.
+ *
+ * @copyright Copyright(c) 2022 Peter Bestler
+ */
 #ifndef _SRC_HAL_ACTORS_RADIOSWITCH433MHZ
 #define _SRC_HAL_ACTORS_RADIOSWITCH433MHZ
 

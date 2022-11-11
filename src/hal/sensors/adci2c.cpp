@@ -1,8 +1,9 @@
 /**
- * @file adc1115.cpp
+ * @file  adci2c.h
  *
- * @brief Declaration of the logic for the I2C attached adc1115.cpp
+ * @brief Definition of the  ADC1115 connected via i2c.
  *
+ * @copyright(c) 2022 Peter Bestler
  */
 #include "adci2c.h"
 

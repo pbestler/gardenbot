@@ -1,13 +1,23 @@
 
+/**
+ * @file  dashboard_pub.h
+ * @brief Declaration of the DashBoardUpdater and the
+ *        ConditionController
+ *
+ * @copyright Copyright(c) 2022 Peter Bestler
+ */
 #ifndef _SRC_SERVICE_DASHBOARD_PUB
 #define _SRC_SERVICE_DASHBOARD_PUB
 
 #include "adci2c.h"
 #include "lightsensor.h"
 #include "temp_hum_gy21.h"
+
 #include "stopwatch.h"
+
+#include <runnable.h>
 #include <publishing.h>
-#include "runnable.h"
+
 
 namespace service
 {
@@ -23,17 +33,23 @@ namespace service
 
         public:
             /**
-             * @brief Sink for adc results.
+             * @brief Sink for adc measurements.
+             *
+             * @param result The subscribed topic.
              */
             void notify(const hal::sensors::adc_result_t& result) override;
 
             /**
-             * @brief Sink for daylight status
+             * @brief Sink for daylight sensor
+             *
+             * @param result The subscribed topic.
              */
             void notify(const hal::sensors::light_sensor_res_t& result) override;
 
             /**
-             * @brief Sink of the air humidity and temperature results.
+             * @brief Sink of the air humidity and temperature sensor.
+             *
+             *
              */
             void notify(const hal::sensors::temp_hum_res_t& result) override;
 

@@ -1,3 +1,10 @@
+/**
+ * @file  radioswitch433mhz.h
+ *
+ * @brief Definition of the RadioSwitch433Mhz.
+ *
+ * @copyright Copyright(c) 2022 Peter Bestler
+ */
 #include "radioswitch433mhz.h"
 #include "dashboard.h"
 #include "LittleFS.h"

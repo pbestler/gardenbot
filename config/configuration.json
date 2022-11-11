@@ -38,6 +38,26 @@
         "value": 250
     },
     {
+        "name": "soilMoistureThreshold",
+        "label": "Soil moisture threshold (%).",
+        "type": "uint32_t",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "control": "slider",
+        "value": 40
+    },
+    {
+        "name": "soilMoistureHysteresis",
+        "label": "Soil moisture hysteresis (%).",
+        "type": "uint32_t",
+        "min": 0,
+        "max": 80,
+        "step": 1,
+        "control": "slider",
+        "value": 40
+    },
+    {
         "name": "aliveLED",
         "label": "Toggle Status LED",
         "type": "bool",

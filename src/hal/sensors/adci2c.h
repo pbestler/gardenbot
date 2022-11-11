@@ -1,9 +1,9 @@
 /**
- * @file adc1115.h
- * @author Peter Bestler
+ * @file  adci2c.h
  *
- * @brief
+ * @brief Declaration ADC1115 connected via i2c.
  *
+ * @copyright Copyright(c) 2022 Peter Bestler
  */
 #ifndef _SRC_HAL_SENSORS_ADCI2C
 #define _SRC_HAL_SENSORS_ADCI2C

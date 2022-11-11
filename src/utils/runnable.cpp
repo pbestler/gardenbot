@@ -1,3 +1,9 @@
+/**
+ * @file runnable.cpp
+ * @brief Definition of runnable
+ *
+ * @copyright Copyright(c) 2022 Peter Bestler
+ */
 #include "runnable.h"
 
 void RunnableContainer::run()

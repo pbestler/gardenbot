@@ -1,11 +1,9 @@
 /**
- * @file lightsensor.h
- * @brief Declaration of light sensor.
+ * @file  lightsensor.h
  *
- * @date 2022-05-25
+ * @brief Declaration of the LightSensor.
  *
- * @copyright Copyright (c) 2022
- *
+ * @copyright Copyright(c) 2022 Peter Bestler
  */
 #ifndef _SRC_HAL_SENSORS_LIGHTSENSOR
 #define _SRC_HAL_SENSORS_LIGHTSENSOR
@@ -26,7 +24,6 @@ public:
     LightSensor();
     ~LightSensor();
     void run() override;
-
 };
 
 };

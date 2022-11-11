@@ -4,7 +4,7 @@
  *
  * Its a kind of signal and slot mechanism.
  *
- * Copyright(c) 2012 Peter Bestler
+ * @copyright Copyright(c) 2022 Peter Bestler
  */
 #ifndef _SRC_UTILS_PUBLISHING
 #define _SRC_UTILS_PUBLISHING

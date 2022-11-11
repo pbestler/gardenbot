@@ -1,6 +1,5 @@
 /**
  * @file stopwatch.cpp
- * @author Peter Bester (peter.bestler@gmail.com)
  *
  * @brief Impementaiton of a smple stopwatch, which can be started and
  *        stopped multiple times.
@@ -9,7 +8,6 @@
  *        and stores it internally.
  *
  * @copyright Copyright (c) 2022 by Peter Bestler
- *
  */
 #include "stopwatch.h"
 #include <chrono>

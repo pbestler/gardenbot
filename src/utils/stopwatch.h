@@ -2,11 +2,10 @@
  * @file stopwatch.h
  * @brief Declaration of stop watch.
  *
- * @copyright Copyright (c) 2022
- *
+ * @copyright Copyright (c) 2022 Peter Bestler
  */
-#ifndef _STOPWATCH_H_
-#define _STOPWATCH_H_
+#ifndef _SRC_UTILS_STOPWATCH
+#define _SRC_UTILS_STOPWATCH
 
 #include "timeSync.h"
 #include <chrono>
@@ -30,4 +29,4 @@ public:
     const std::chrono::seconds getElapsedTime();
 };
 
-#endif // _STOP_WATCH_
+#endif /* _SRC_UTILS_STOPWATCH */

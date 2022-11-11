@@ -1,3 +1,10 @@
+/**
+ * @file  gardenmanager.cpp
+ *
+ * @brief Definition of the GardenManager.
+ *
+ * @copyright Copyright(c) 2022 Peter Bestler
+ */
 #include "gardenmanager.h"
 #include "MyAlarm.h"
 #include "LittleFS.h"
@@ -6,7 +13,6 @@
 #include <ctime>
 
 using namespace app;
-using namespace hal::sensors;
 
 GardenManager::GardenManager():
     _lightSensor(),
@@ -22,18 +28,22 @@ GardenManager::GardenManager():
     /* 1) Connect all subscribers to their corresponding publishers. */
     _lightSensor.addSubscriber(_dashboardUpdater);
     _adc.addSubscriber(_dashboardUpdater);
+    _tempHumiditySensor.addSubscriber(_dashboardUpdater);
 
 
-    /* 2) Add all cyclic tasks to our mainloop (accquisition, evaluation, actors) */
+    /* 2) Add accquiring inputs */
     _sensors.add(_lightSensor);
     _sensors.add(_adc);
+    _sensors.add(_tempHumiditySensor);
 
+    /* 3) Add calculation of state model */
     _services.add(_dashboardUpdater);
     _services.add(_environmentController);
 
+    /* 4) Add acttors */
     _actors.add(_radioSwitch);
 
-    /* 3) Setup our cronjobs. */
+    /* 5) Setup our cronjobs. */
     timerAlarm.startService();
     timerAlarm.createDay(0, 0, 1, [&] () { _daylightWatch.reset(); });
 
