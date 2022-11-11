@@ -61,7 +61,14 @@ void LightSensor::loop()
 {
     dash.data.DaylightSensor = sensor.readLightLevel();
 
-    if ((dash.data.DaylightSensor >= configManager.data.daylightsensorThreshold) &&
+    // Here we fetch the hysteresis sesttings.<
+    const auto nightThreshold = configManager.data.daylightsensorThreshold -
+            configManager.data.daylightsensorHysteresis;
+    const auto dayThreshold = configManager.data.daylightsensorThreshold +
+            configManager.data.daylightsensorHysteresis;
+
+
+    if ((dash.data.DaylightSensor >= dayThreshold) &&
         (dash.data.IsItDay == false))
     {
         this->_daylightWatch.start();
@@ -73,7 +80,7 @@ void LightSensor::loop()
         dash.data.IsItDay = true;
     }
 
-    if ((dash.data.DaylightSensor < configManager.data.daylightsensorThreshold) &&
+    if ((dash.data.DaylightSensor < nightThreshold) &&
         (dash.data.IsItDay == true))
     {
         this->_daylightWatch.stop();
