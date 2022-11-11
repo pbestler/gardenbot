@@ -73,11 +73,12 @@ void StopWatch::reset()
     this->_elapsedTime = std::chrono::seconds::zero();
 }
 
- /* Getter for the elapsed Time
- *
- * @return elapsed time.
- */
-const std::chrono::seconds StopWatch::getElapsedTime()
+ /**
+  * @brief Gettter of the eleapsed time.
+  *
+  * @return elapsed time.
+  */
+ const std::chrono::seconds StopWatch::getElapsedTime()
 {
 
     if (this->_startTime != std::chrono::steady_clock::time_point::min())

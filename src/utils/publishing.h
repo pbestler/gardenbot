@@ -4,10 +4,10 @@
  *
  * Its a kind of signal and slot mechanism.
  *
- * Copyright(c) 2012 OMICRON electronics GmbH. All rights reserved.
+ * Copyright(c) 2012 Peter Bestler
  */
-#ifndef _PUBLISHING_H_
-#define _PUBLISHING_H_
+#ifndef _SRC_UTILS_PUBLISHING
+#define _SRC_UTILS_PUBLISHING
 
 #include <vector>
 #include <algorithm>
@@ -86,4 +86,4 @@ private:
 	std::vector<Subscriber<TSubject>*> _subscribers;
 };
 
-#endif
+#endif /* _SRC_UTILS_PUBLISHING */

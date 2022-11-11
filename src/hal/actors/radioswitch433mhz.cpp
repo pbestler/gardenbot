@@ -2,6 +2,8 @@
 #include "dashboard.h"
 #include "LittleFS.h"
 
+using namespace hal::actors;
+
 enum
 {
     ON,
@@ -19,19 +21,14 @@ RadioSwitch433Mhz::RadioSwitch433Mhz():
     _radioModule(),
     _valueMap({dash.data.Socket1, dash.data.Socket2}),
     _switchValuesCache()
-{}
-
-RadioSwitch433Mhz::~RadioSwitch433Mhz()
-{}
-
-void RadioSwitch433Mhz::begin()
 {
     _radioModule.enableTransmit(0); //Pin D3
     _radioModule.setProtocol(1);
     _radioModule.setPulseLength(187);
+
 }
 
-void RadioSwitch433Mhz::loop()
+void RadioSwitch433Mhz::run()
 {
     for (size_t i = 0u; i < this->_valueMap.size(); i++)
     {

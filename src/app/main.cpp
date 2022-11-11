@@ -17,6 +17,8 @@
 static unsigned long last_time = 0;
 static int pin_state = 0;
 
+app::GardenManager Gardener;
+
 void setup()
 {
     Serial.begin(115200);
@@ -44,7 +46,6 @@ void setup()
     GUI.begin();
     configManager.begin();
     dash.begin(1000);
-    Gardener.begin();
 
     // Set LED to off.
     pinMode(BUILTIN_LED, OUTPUT);

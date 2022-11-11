@@ -20,6 +20,7 @@ private:
     steady_tp_t _startTime;
     /** The total elapsed time */
     std::chrono::seconds _elapsedTime;
+
 public:
     StopWatch(/* args */);
     ~StopWatch();

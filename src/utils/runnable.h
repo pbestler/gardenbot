@@ -1,11 +1,12 @@
-#ifndef RUNNABLE_H
-#define RUNNABLE_H
+#ifndef _SRC_UTILS_RUNNABLE
+#define _SRC_UTILS_RUNNABLE
 
 #include <vector>
 
 class Runnable
 {
     public:
+        virtual ~Runnable() {};
         virtual void run(void) = 0;
 };
 
@@ -19,4 +20,4 @@ class RunnableContainer: public Runnable
         std::vector<Runnable*> _runnables;
 };
 
-#endif
+#endif /* _SRC_UTILS_RUNNABLE */

@@ -1,10 +1,8 @@
 #include "runnable.h"
 
-
-
 void RunnableContainer::run()
 {
-    for (auto runnable: _runnables)
+    for (auto& runnable: _runnables)
     {
         runnable->run();
     }
