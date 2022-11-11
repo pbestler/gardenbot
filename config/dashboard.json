@@ -14,9 +14,8 @@
     {
         "name": "DaylightSensor",
         "label": "Daylight sensor",
-        "type": "float",
+        "type": "uint32_t",
         "direction": "display",
-        "display": "graph",
         "xaxis": 100
     },
     {

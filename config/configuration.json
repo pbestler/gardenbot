@@ -22,9 +22,9 @@
         "label": "Light Sensor threshold (lux).",
         "type": "uint32_t",
         "min": 0,
-        "max": 100000,
-        "step": 100,
+        "max": 10000,
+        "step": 50,
         "control": "slider",
-        "value": 5000
+        "value": 150
     }
 ]
