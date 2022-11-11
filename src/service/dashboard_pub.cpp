@@ -33,7 +33,7 @@ void DashBoardUpdater::notify(const adc_result_t& result)
 
 void DashBoardUpdater::notify(const light_sensor_res_t& result)
 {
-    dash.data.DaylightSensor = result._lumen;
+    dash.data.DaylightSensor = result;
 
     // Here we fetch the hysteresis sesttings.<
     const auto nightThreshold = configManager.data.daylightsensorThreshold -

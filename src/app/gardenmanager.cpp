@@ -20,8 +20,8 @@ GardenManager::GardenManager():
 {
 
     /* 1) Connect all subscribers to their corresponding publishers. */
-    _lightSensor._lightSensorSubscribers.addSubscriber(_dashboardUpdater);
-    _adc._adcSubscribers.addSubscriber(_dashboardUpdater);
+    _lightSensor.addSubscriber(_dashboardUpdater);
+    _adc.addSubscriber(_dashboardUpdater);
 
 
     /* 2) Add all cyclic tasks to our mainloop (accquisition, evaluation, actors) */

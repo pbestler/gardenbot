@@ -12,31 +12,21 @@
 #include <functional>
 #include "runnable.h"
 #include <map>
+#include <tuple>
 #include <stdint.h>
 
 namespace hal::sensors {
 
 /** Declaration of the top which is emitted from ADC. */
-struct adc_result{
-    uint32_t _channelId;
-    double _value;
-
-    adc_result(uint32_t channel, double val):
-        _channelId(channel),
-        _value(val)
-    {};
-};
-
-typedef adc_result adc_result_t;
+typedef std::pair<uint8_t,double> adc_result_t;
 
 class ADC1115:
-    public Runnable
+    public Runnable,
+    public Publisher<adc_result_t>
 {
-
     public:
         ADC1115();
         void run() override;
-        Publisher<adc_result_t> _adcSubscribers;
 };
 
 }

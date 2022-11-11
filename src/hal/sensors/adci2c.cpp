@@ -9,10 +9,8 @@
 using namespace hal::sensors;
 
 
-ADC1115::ADC1115(void):
-    _adcSubscribers()
-{
-};
+ADC1115::ADC1115(void)
+{};
 
 void ADC1115::run()
 {
@@ -20,6 +18,6 @@ void ADC1115::run()
 
     for (int i = 0; i < 4; i++)
     {
-        _adcSubscribers.publish(adc_result(i, value));
+        publish(std::make_pair(i, value));
     }
 };

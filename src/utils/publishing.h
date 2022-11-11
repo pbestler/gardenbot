@@ -56,7 +56,7 @@ public:
 	 */
 	void addSubscriber(Subscriber<TSubject>& subscr)
 	{
-		_subscribers.push_back(&subscr);
+		_subscribers.emplace_back(&subscr);
 	}
 
 	/**

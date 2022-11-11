@@ -23,11 +23,8 @@ using namespace hal::sensors;
 
 AS_BH1750 sensor;
 
-LightSensor::LightSensor():
-    _lightSensorSubscribers()
-{
-
-}
+LightSensor::LightSensor()
+{}
 
 LightSensor::~LightSensor()
 {}
@@ -41,5 +38,5 @@ void LightSensor::run()
     }
 
     // We could read the sensor.
-    _lightSensorSubscribers.publish(light_sensor_res(tmpVal));
+    publish(tmpVal);
 }

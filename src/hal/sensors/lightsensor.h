@@ -16,21 +16,13 @@
 
 namespace hal::sensors {
 
-typedef struct light_sensor_res
+typedef int32_t light_sensor_res_t;
+
+class LightSensor:
+    public Runnable,
+    public Publisher<light_sensor_res_t>
 {
-    int32_t _lumen;
-
-    explicit light_sensor_res(int32_t val):
-        _lumen(val)
-    {};
-} light_sensor_res_t;
-
-
-class LightSensor: public Runnable
-{
-private:
 public:
-    Publisher<light_sensor_res_t> _lightSensorSubscribers;
     LightSensor();
     ~LightSensor();
     void run() override;
