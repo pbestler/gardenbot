@@ -5,7 +5,7 @@
 #include <bitset>
 #include <functional>
 
-#define NR_OF_SOCKETS 2
+constexpr int NR_OF_SOCKETS = 2;
 
 class RadioSwitch433Mhz
 {
