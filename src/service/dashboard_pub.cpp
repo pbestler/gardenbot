@@ -38,7 +38,7 @@ DashBoardUpdater::DashBoardUpdater(StopWatch& stopWatch):
  */
 void DashBoardUpdater::run(void)
 {
-    //dash.data.NrOfDaylightMinutes = _daylightWatch.getElapsedTime();
+    dash.data.NrOfDaylightMinutes = std::chrono::duration_cast<std::chrono::minutes>(_daylightWatch.getElapsedTime()).count();
 }
 
 /**
@@ -49,17 +49,13 @@ void DashBoardUpdater::run(void)
  */
 void DashBoardUpdater::notify(const adc_result_t& result)
 {
-    constexpr int NR_OF_ADC_VALUES = 3;
-
-    static int32_t* const LUT_FLOAT[NR_OF_ADC_VALUES] = {
-        &dash.data.MoistureLevel1,
-        &dash.data.MoistureLevel2,
-        &dash.data.MoistureLevel3
+    std::array<int32_t* const, 1> LUT_FLOAT = {
+        &dash.data.MoistureLevel1
     };
 
     const auto id = std::get<adc_result_desc_t::ID>(result);
     const auto value = std::get<adc_result_desc_t::VALUE>(result);
-    if (std::get<adc_result_desc_t::ID>(result) < NR_OF_ADC_VALUES)
+    if (id < LUT_FLOAT.size())
     {
         *LUT_FLOAT[id] = convertVoltageToMoistureLevel(value);
     }

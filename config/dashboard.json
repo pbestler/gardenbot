@@ -47,18 +47,6 @@
         "label": "Moisture sensor 1 (%)",
         "type": "int32_t",
         "direction": "display"
-    },
-    {
-        "name": "MoistureLevel2",
-        "label": "Moisture sensor 2 (%)",
-        "type": "int32_t",
-        "direction": "display"
-    },
-    {
-        "name": "MoistureLevel3",
-        "label": "Moisture sensor 3 (%)",
-        "type": "int32_t",
-        "direction": "display"
     }
 
 ]
