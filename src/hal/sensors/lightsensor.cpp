@@ -20,7 +20,12 @@ using namespace hal::sensors;
 AS_BH1750 sensor;
 
 LightSensor::LightSensor()
-{}
+{
+    if(!sensor.begin()) {
+        Serial.println("BH1750 init failed!");
+        while(true);
+    }
+}
 
 LightSensor::~LightSensor()
 {}
