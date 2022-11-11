@@ -19,29 +19,7 @@
  */
 StopWatch::StopWatch():
     _startTime(std::chrono::steady_clock::time_point::min())
-{
-    if (timeSync.isSynced() == false)
-    {
-        timeSync.begin();
-
-        //Wait for connection
-        timeSync.waitForSyncResult(5000);
-    }
-
-
-    if (timeSync.isSynced())
-    {
-        time_t now = time(nullptr);
-        Serial.print(PSTR("Current time in Berlin: "));
-        Serial.print(asctime(localtime(&now)));
-
-    }
-    else
-    {
-        Serial.println("Timeout while receiving the time");
-    }
-
-}
+{}
 
 /**
  * @brief Destroy the Stop Watch:: Stop Watch object
@@ -91,7 +69,7 @@ const std::chrono::seconds StopWatch::stop()
 void StopWatch::reset()
 {
     this->_startTime = std::chrono::steady_clock::time_point::min();
-    this->_elapsedTime = std::chrono::steady_clock::time_point::max();
+    this->_elapsedTime = std::chrono::seconds::min();
 }
 
  /* Getter for the elapsed Time
