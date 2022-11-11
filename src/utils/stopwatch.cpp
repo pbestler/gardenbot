@@ -55,7 +55,7 @@ const std::chrono::seconds StopWatch::stop()
 
     auto endTime = std::chrono::steady_clock::now();
 
-    this->_elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(endTime - this->_startTime);
+    this->_elapsedTime += std::chrono::duration_cast<std::chrono::seconds>(endTime - this->_startTime);
     this->_startTime = std::chrono::steady_clock::time_point::min();
 
     return this->_elapsedTime;
@@ -79,11 +79,10 @@ void StopWatch::reset()
 const std::chrono::seconds StopWatch::getElapsedTime()
 {
 
-    std::chrono::seconds current_elapsed = std::chrono::seconds::min();
     if (this->_startTime != std::chrono::steady_clock::time_point::min())
     {
         auto currentTime = std::chrono::steady_clock::now();
-        current_elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - this->_startTime);
+        auto current_elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - this->_startTime);
         return (this->_elapsedTime + current_elapsed);
     }
 
